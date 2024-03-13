@@ -10,4 +10,7 @@ print(cross)
 vector_X_matrix = datastructures.vector_X_matrix(v1, M)
 print(vector_X_matrix)
 print(np.dot(v1, M))
+
+matrix_X_vector = datastructures.matrix_X_vector(M, v1)
+print(matrix_X_vector)
 print(np.dot(M, v1))

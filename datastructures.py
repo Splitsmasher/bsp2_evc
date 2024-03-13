@@ -115,7 +115,13 @@ def vector_X_matrix(v: np.ndarray, M: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
+    r = []
 
+    newM = M.transpose()
+
+    if len(v) == len(newM):
+        for i in range(len(v)):
+            r.append(dot_product(v, newM[i]))
 
     ### END STUDENT CODE
 
