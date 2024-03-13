@@ -6,14 +6,18 @@ def define_structures() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         Defines the two vectors v1 and v2 as well as the matrix M determined by your matriculation number.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    #Matrikelnr: 12333468
+    #A=1 B=2 C=3 D=3 E=3 F=4 G=6 H=8
 
-    v1 = np.zeros(3)
-    v2 = v1.copy()
-    M = np.zeros((3,3))
+    #D A C
+    v1 = np.array([3, 1, 3])
+
+    #F B E
+    v2 = np.array([4, 2, 3])
+
+    #[D B C][B G A][E H F]
+    M = np.array([[3, 2, 3], [2, 6, 1], [3, 8, 4]])
     
     ### END STUDENT CODE
 
@@ -24,12 +28,11 @@ def sequence(M : np.ndarray) -> np.ndarray:
         Defines a vector given by the minimum and maximum digit of your matriculation number. Step size = 0.25.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    min = np.min(M)
+    max = np.max(M)
 
-    result = np.zeros(10)
+    result = np.arange(min, (max + 0.25), 0.25)
 
     ### END STUDENT CODE
 
@@ -41,12 +44,11 @@ def matrix(M : np.ndarray) -> np.ndarray:
         Defines the 15x9 block matrix as described in the task description.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    r = np.zeros((15,9))
+    zeros = np.zeros((3,3))
+    v1 = np.hstack((M, zeros, M))
+    v2 = np.hstack((zeros, M, zeros))
+    r = np.vstack((v1, v2, v1, v2, v1))
 
     ### END STUDENT CODE
 
@@ -58,12 +60,10 @@ def dot_product(v1:np.ndarray, v2:np.ndarray) -> float:
         Dot product of v1 and v2.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    r = np.zeros(v1.shape)
+    r = 0
+    for i in range(len(v1)):
+        r += v1[i] * v2[i]
 
     ### END STUDENT CODE
 
@@ -74,12 +74,9 @@ def cross_product(v1:np.ndarray, v2:np.ndarray) -> np.ndarray:
         Cross product of v1 and v2.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
 
-    r = np.zeros(v1.shape)
+
     ### END STUDENT CODE
 
     return r
