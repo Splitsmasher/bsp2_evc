@@ -104,8 +104,6 @@ def cross_product(v1: np.ndarray, v2: np.ndarray) -> np.ndarray:
             # Adding this part of the Crossproduct
             r.append(v1[indexUp] * v2[indexDown] - v1[indexDown] * v2[indexUp])
 
-            print(np.cross(v1, v2))
-
     ### END STUDENT CODE
 
     return r
@@ -116,11 +114,9 @@ def vector_X_matrix(v: np.ndarray, M: np.ndarray) -> np.ndarray:
         Defines the vector-matrix multiplication v*M.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-    r = np.zeros((v.shape[0], M.shape[1]))
+
+
     ### END STUDENT CODE
 
     return r
@@ -131,11 +127,13 @@ def matrix_X_vector(M: np.ndarray, v: np.ndarray) -> np.ndarray:
         Defines the matrix-vector multiplication M*v.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-    r = np.zeros((M.shape[0], v.shape[0]))
+    r = []
+
+    if len(v) == len(M):
+        for i in range(len(v)):
+            r.append(dot_product(v, M[i]))
+
     ### END STUDENT CODE
 
     return r
