@@ -84,7 +84,7 @@ def cross_product(v1: np.ndarray, v2: np.ndarray) -> np.ndarray:
      I don't know if i needed to do this or if the hardcoded version for 3 Dimensions would have been enough 
      also i tried to comment my work
     """
-    r = []
+    storage = []
 
     # Both Vectors need to have the same length
     if len(v1) == len(v2):
@@ -102,7 +102,9 @@ def cross_product(v1: np.ndarray, v2: np.ndarray) -> np.ndarray:
                 indexDown = indexUp + 1 - len(v1)
 
             # Adding this part of the Crossproduct
-            r.append(v1[indexUp] * v2[indexDown] - v1[indexDown] * v2[indexUp])
+            storage.append(v1[indexUp] * v2[indexDown] - v1[indexDown] * v2[indexUp])
+
+    r: np.ndarray = np.array(storage)
 
     ### END STUDENT CODE
 
@@ -115,13 +117,15 @@ def vector_X_matrix(v: np.ndarray, M: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
-    r = []
+    storage = []
 
     newM = M.transpose()
 
     if len(v) == len(newM):
         for i in range(len(v)):
-            r.append(dot_product(v, newM[i]))
+            storage.append(dot_product(v, newM[i]))
+
+    r = np.array(storage)
 
     ### END STUDENT CODE
 
@@ -134,11 +138,13 @@ def matrix_X_vector(M: np.ndarray, v: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
-    r = []
+    storage = []
 
     if len(v) == len(M):
         for i in range(len(v)):
-            r.append(dot_product(v, M[i]))
+            storage.append(dot_product(v, M[i]))
+
+    r = np.array(storage)
 
     ### END STUDENT CODE
 
