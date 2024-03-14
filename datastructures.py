@@ -130,7 +130,7 @@ def vector_X_matrix(v: np.ndarray, M: np.ndarray) -> np.ndarray:
 
     newM = M.transpose()
 
-    if len(v) == len(newM):
+    if len(v) == len(newM[0]):
         for i in range(len(v)):
             storage.append(dot_product(v, newM[i]))
     else:
@@ -151,8 +151,8 @@ def matrix_X_vector(M: np.ndarray, v: np.ndarray) -> np.ndarray:
 
     storage = []
 
-    if len(v) == len(M):
-        for i in range(len(v)):
+    if len(v) == len(M[0]):
+        for i in range(len(v) - 1):
             storage.append(dot_product(v, M[i]))
     else:
         raise Exception("the Length of v must be equal to the height of M")
@@ -173,6 +173,9 @@ def matrix_X_matrix(M1: np.ndarray, M2: np.ndarray) -> np.ndarray:
     storage2 = []
 
     newM2 = M2.transpose()
+
+    if len(M1[0]) != len(newM2[0]):
+        raise Exception("The height of M1 must be equal to the width of M2")
 
     for row in M1:
         storage = []
