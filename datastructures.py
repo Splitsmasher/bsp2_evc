@@ -47,6 +47,11 @@ def matrix(M: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
+    if len(M) != 3:
+        raise Exception("Matrix has the wrong height")
+    if len(M[0]) != len(M[1] or len(M[0]) != len(M[2]) and len(M[0]) != 3):
+        raise Exception("Matrix has the wrong width")
+
     zeros = np.zeros((3, 3))
     v1 = np.hstack((M, zeros, M))
     v2 = np.hstack((zeros, M, zeros))
@@ -67,6 +72,8 @@ def dot_product(v1: np.ndarray, v2: np.ndarray) -> float:
     if len(v1) == len(v2):
         for i in range(len(v1)):
             r += v1[i] * v2[i]
+    else:
+        raise Exception("Both Vectors must have the same length.")
 
     ### END STUDENT CODE
 
@@ -103,6 +110,8 @@ def cross_product(v1: np.ndarray, v2: np.ndarray) -> np.ndarray:
 
             # Adding this part of the Crossproduct
             storage.append(v1[indexUp] * v2[indexDown] - v1[indexDown] * v2[indexUp])
+    else:
+        raise Exception("Both Vectors must have the same length")
 
     r: np.ndarray = np.array(storage)
 
@@ -124,6 +133,8 @@ def vector_X_matrix(v: np.ndarray, M: np.ndarray) -> np.ndarray:
     if len(v) == len(newM):
         for i in range(len(v)):
             storage.append(dot_product(v, newM[i]))
+    else:
+        raise Exception("the Length of v must be equal to the width of M")
 
     r = np.array(storage)
 
@@ -143,6 +154,8 @@ def matrix_X_vector(M: np.ndarray, v: np.ndarray) -> np.ndarray:
     if len(v) == len(M):
         for i in range(len(v)):
             storage.append(dot_product(v, M[i]))
+    else:
+        raise Exception("the Length of v must be equal to the height of M")
 
     r = np.array(storage)
 
