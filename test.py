@@ -1,4 +1,6 @@
 import numpy as np
+"""
+#TESTS Für Datastruktures:
 
 import datastructures
 
@@ -38,4 +40,5 @@ M2 = np.array([[0, 1, 2], [3, 4, 5]])
 #print(datastructures.matrix_X_matrix(M2, M))
 #print(np.multiply(M, M2))
 #datastructures.matrix_Xc_matrix(M, M2)
+"""
 
