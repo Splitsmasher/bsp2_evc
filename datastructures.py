@@ -169,7 +169,7 @@ def matrix_X_matrix(M1: np.ndarray, M2: np.ndarray) -> np.ndarray:
 
     r = storage2[0]
     for array in range(len(storage2) - 1):
-        r = np.vstack((r, storage2[array]))
+        r = np.vstack((r, storage2[array + 1]))
 
     ### END STUDENT CODE
 
@@ -181,11 +181,25 @@ def matrix_Xc_matrix(M1: np.ndarray, M2: np.ndarray) -> np.ndarray:
         Defines the element-wise matrix multiplication M1*M2 (Hadamard Product).
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-    r = np.zeros(M1.shape)
+    storageList = []
+
+    if len(M1) == len(M2):
+        for i in range(len(M1)):
+            if len(M1[i]) == len(M2[i]):
+                storage = []
+                for j in range(len(M1[i])):
+                    storage.append(M1[i][j] * M2[i][j])
+                storageList.append(storage)
+            else:
+                raise Exception("M1 and M2 must have the same Width")
+
+        r = storageList[0]
+        for array in range(len(storageList) - 1):
+            r = np.vstack((r, storageList[array + 1]))
+    else:
+        raise Exception("M1 and M2 must have the same height")
+
     ### END STUDENT CODE
 
     return r
