@@ -14,3 +14,7 @@ print(np.dot(v1, M))
 matrix_X_vector = datastructures.matrix_X_vector(M, v1)
 print(matrix_X_vector)
 print(np.dot(M, v1))
+
+matrix_X_matrix = datastructures.matrix_X_matrix(M, M.transpose())
+print(matrix_X_matrix)
+print(np.dot(M, M.transpose()))

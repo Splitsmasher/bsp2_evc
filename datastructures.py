@@ -150,11 +150,21 @@ def matrix_X_matrix(M1: np.ndarray, M2: np.ndarray) -> np.ndarray:
         Defines the matrix multiplication M1*M2.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-    r = np.zeros((M1.shape[0], M2.shape[1]))
+    storage2 = []
+
+    newM2 = M2.transpose()
+
+    for row in M1:
+        storage = []
+        for column in newM2:
+            storage.append(dot_product(column, row))
+        storage2.append(storage)
+
+    r = storage2[0]
+    for array in range(len(storage2) - 1):
+        r = np.vstack((r, storage2[array]))
+
     ### END STUDENT CODE
 
     return r
