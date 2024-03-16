@@ -64,3 +64,18 @@ print(area)
 alpha, beta, gamma = triangles.compute_angles(P1P2, P2P3, P3P1)
 print(alpha, beta, gamma)
 """
+
+image = images.read_img('images/mandrill_color.jpg')
+plt.imshow(image)
+
+image_float = images.convert(image)
+plt.imshow(image_float)
+
+image_swapped = images.switch_channels(image_float)
+plt.imshow(image_swapped)
+
+image_marked_green = images.image_mark_green(image_float)
+plt.imshow(image_marked_green)
+
+image_masked = images.image_masked(image_float, image_marked_green)
+plt.imshow(image_masked)
