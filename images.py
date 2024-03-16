@@ -1,6 +1,8 @@
+import cv2
 import numpy as np
 import scipy.ndimage
 from PIL import Image
+from pygments.formatters import img
 
 import utils
 
@@ -32,15 +34,17 @@ def switch_channels(img: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
-    for line in range(len(img)):
-        for pixel in range(len(img[line])):
-            red = img[line][pixel][0]
-            green = img[line][pixel][1]
+    newImg = np.copy(img)
 
-            img[line][pixel][1] = red
-            img[line][pixel][0] = green
+    for line in range(len(newImg)):
+        for pixel in range(len(newImg[line])):
+            red = newImg[line][pixel][0]
+            green = newImg[line][pixel][1]
 
-    out = np.array(img)
+            newImg[line][pixel][1] = red
+            newImg[line][pixel][0] = green
+
+    out = np.array(newImg)
 
     ### END STUDENT CODE
 
@@ -52,12 +56,13 @@ def image_mark_green(img: np.ndarray) -> np.ndarray:
         returns a numpy-array (HxW) with 1 where the green channel of the input image is greater or equal than 0.7, otherwise zero.
     """
     ### STUDENT CODE
-
     lo = 0.7
 
     green = img[:, :, 1]
 
-    mask = np.where(green > lo, 1, 0)
+    mask = np.where(green >= lo, 1, 0)
+
+    #mask =  np.all(img[:, :, :1] >= lo, axis=-1)
 
     ### END STUDENT CODE
 
@@ -70,7 +75,11 @@ def image_masked(img: np.ndarray, mask: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
-    out =
+    temp = np.copy(img)
+
+    temp[mask == 1] = [1., 1., 1.]
+
+    out = np.copy(temp)
 
     ### END STUDENT CODE
 
