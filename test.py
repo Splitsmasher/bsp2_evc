@@ -1,4 +1,8 @@
 import numpy as np
+
+import datastructures
+import triangles
+
 """
 #TESTS Für Datastruktures:
 
@@ -42,3 +46,11 @@ M2 = np.array([[0, 1, 2], [3, 4, 5]])
 #datastructures.matrix_Xc_matrix(M, M2)
 """
 
+P1, P2, P3 = triangles.define_triangle()
+print(P1, P2, P3)
+P1P2, P2P3, P3P1 = triangles.define_triangle_vertices(P1, P2, P3)
+print(P1P2, P2P3, P3P1)
+lengths = triangles.compute_lengths(P1P2, P2P3, P3P1)
+print(lengths)
+n, n_norm = triangles.compute_normal_vector(P1P2, P2P3, P3P1)
+print(n, n_norm)

@@ -53,14 +53,13 @@ def compute_lengths(P1P2:np.ndarray, P2P3:np.ndarray, P3P1:np.ndarray) -> List[f
     return norms
 
 def compute_normal_vector(P1P2:np.ndarray, P2P3:np.ndarray, P3P1:np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    n = np.cross(P1P2, P3P1)
+    nLength = np.sqrt(np.square(n[0]) + np.square(n[1]) + np.square(n[2]))
+    n_normalized = [n[0] / nLength, n[1] / nLength, n[2]/ nLength]
 
-    n = np.zeros(3)
-    n_normalized = np.zeros(3)
     ### END STUDENT CODE
 
     return n, n_normalized
