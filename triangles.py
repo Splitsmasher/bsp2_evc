@@ -3,15 +3,22 @@ from typing import List, Tuple
 import numpy as np
 
 def define_triangle() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    A = 1
+    B = 2
+    C = 3
+    D = 3
+    E = 3
+    F = 4
+    G = 6
+    H = 8
 
-    P1 = np.zeros(3)
-    P2 = np.zeros(3)
-    P3 = np.zeros(3)
+    P1 = np.array([(1 + C), -(1 + A), -(1 + E)])
+    P2 = np.array([-(1 + G), -(1 + B), (1 + H)])
+    P3 = np.array([-(1 + D), (1 + F), -(1 + B)])
+
     ### END STUDENT CODE
 
     return P1, P2, P3
