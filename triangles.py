@@ -24,27 +24,30 @@ def define_triangle() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     return P1, P2, P3
 
 def define_triangle_vertices(P1:np.ndarray, P2:np.ndarray, P3:np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    #       ->
+    #Vector AB = B - A
 
-    P1P2 = np.zeros(3)
-    P2P3 = np.zeros(3)
-    P3P1 = np.zeros(3)
+    P1P2  = np.array([P2[0] - P1[0], P2[1] - P1[1], P2[2] - P1[2]])
+    P2P3  = np.array([P3[0] - P2[0], P3[1] - P2[1], P3[2] - P2[2]])
+    P3P1  = np.array([P1[0] - P3[0], P1[1] - P3[1], P1[2] - P3[2]])
+
     ### END STUDENT CODE
 
     return P1P2, P2P3, P3P1
 
 def compute_lengths(P1P2:np.ndarray, P2P3:np.ndarray, P3P1:np.ndarray) -> List[float]:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    p1p2Length = np.sqrt(np.square(P1P2[0]) + np.square(P1P2[1]) + np.square(P1P2[2]))
+    p2p3Length = np.sqrt(np.square(P2P3[0]) + np.square(P2P3[1]) + np.square(P2P3[2]))
+    p3p1Length = np.sqrt(np.square(P3P1[0]) + np.square(P3P1[1]) + np.square(P3P1[2]))
 
-    norms = [0., 0., 0.]
+    norms = [p1p2Length, p2p3Length, p3p1Length]
+
     ### END STUDENT CODE
 
     return norms
