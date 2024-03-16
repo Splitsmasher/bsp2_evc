@@ -1,6 +1,8 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 import datastructures
+import images
 import triangles
 
 """
@@ -46,6 +48,9 @@ M2 = np.array([[0, 1, 2], [3, 4, 5]])
 #datastructures.matrix_Xc_matrix(M, M2)
 """
 
+"""
+#Tests Triangles
+
 P1, P2, P3 = triangles.define_triangle()
 print(P1, P2, P3)
 P1P2, P2P3, P3P1 = triangles.define_triangle_vertices(P1, P2, P3)
@@ -58,4 +63,4 @@ area = triangles.compute_triangle_area(n)
 print(area)
 alpha, beta, gamma = triangles.compute_angles(P1P2, P2P3, P3P1)
 print(alpha, beta, gamma)
-
+"""

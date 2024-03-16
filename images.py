@@ -9,7 +9,7 @@ def read_img(inp:str) -> Image.Image:
     """
         Returns a PIL Image given by its input path.
     """
-    img =  Image.open(inp)
+    img = Image.open(inp)
     return img
 
 def convert(img:Image.Image) -> np.ndarray:
@@ -17,12 +17,21 @@ def convert(img:Image.Image) -> np.ndarray:
         Converts a PIL image [0,255] to a numpy array [0,1].
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    array = np.array(img)
 
-    out = np.zeros((512,512,3))
+    storage_line = []
+
+    for line in array:
+        storage_pixel = []
+        for pixel in line:
+            storage_color = []
+            for color in pixel:
+                storage_color.append(color / 255)
+            storage_pixel.append(storage_color)
+        storage_line.append(storage_pixel)
+
+    out = np.array(storage_line)
 
     ### END STUDENT CODE
     return out
