@@ -75,11 +75,9 @@ def image_masked(img: np.ndarray, mask: np.ndarray) -> np.ndarray:
     """
     ### STUDENT CODE
 
-    temp = np.copy(img)
+    out = np.copy(img)
 
-    temp[mask == 1] = [1., 1., 1.]
-
-    out = np.copy(temp)
+    out[mask == 1] = [1., 1., 1.]
 
     ### END STUDENT CODE
 
