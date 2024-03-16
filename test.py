@@ -54,3 +54,8 @@ lengths = triangles.compute_lengths(P1P2, P2P3, P3P1)
 print(lengths)
 n, n_norm = triangles.compute_normal_vector(P1P2, P2P3, P3P1)
 print(n, n_norm)
+area = triangles.compute_triangle_area(n)
+print(area)
+alpha, beta, gamma = triangles.compute_angles(P1P2, P2P3, P3P1)
+print(alpha, beta, gamma)
+

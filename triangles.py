@@ -65,25 +65,30 @@ def compute_normal_vector(P1P2:np.ndarray, P2P3:np.ndarray, P3P1:np.ndarray) -> 
     return n, n_normalized
 
 def compute_triangle_area(n:np.ndarray) -> float:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    nLength = np.sqrt(np.square(n[0]) + np.square(n[1]) + np.square(n[2]))
+    area = nLength / 2
 
-    area = 0
     ### END STUDENT CODE
 
     return area
 
 def compute_angles(P1P2:np.ndarray,P2P3:np.ndarray,P3P1:np.ndarray) -> Tuple[float, float, float]:
+
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    lengths = compute_lengths(P1P2, P2P3, P3P1)
 
-    alpha, beta, gamma = 0., 0., 0.
+    dotP1P2_P2P3 = np.dot(P1P2, P2P3)
+    dotP2P3_P3P1 = np.dot(P2P3, P3P1)
+    dotP1P2_P3P1 = np.dot(P1P2, P3P1)
+
+    alpha = np.degrees(np.pi - np.arccos(dotP1P2_P3P1 / (lengths[0] * lengths[2])))
+    beta = np.degrees(np.pi - np.arccos(dotP1P2_P2P3 / (lengths[0] * lengths[1])))
+    gamma = np.degrees(np.pi - np.arccos(dotP2P3_P3P1 / (lengths[1] * lengths[2])))
+
     ### END STUDENT CODE
 
     return alpha, beta, gamma
