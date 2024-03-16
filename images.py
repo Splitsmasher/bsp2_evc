@@ -41,12 +41,16 @@ def switch_channels(img:np.ndarray) -> np.ndarray:
         Swaps the red and green channel of a RGB image given by a numpy array.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    for line in range(len(img)):
+        for pixel in range(len(img[line])):
+            red = img[line][pixel][0]
+            green = img[line][pixel][1]
 
-    out = np.zeros(img.shape)
+            img[line][pixel][1] = (red)
+            img[line][pixel][0] = (green)
+
+    out = np.array(img)
 
     ### END STUDENT CODE
 
