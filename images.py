@@ -4,6 +4,7 @@ import scipy.ndimage
 from PIL import Image
 from pygments.formatters import img
 
+import datastructures
 import utils
 
 
@@ -62,7 +63,7 @@ def image_mark_green(img: np.ndarray) -> np.ndarray:
 
     mask = np.where(green >= lo, 1, 0)
 
-    #mask =  np.all(img[:, :, :1] >= lo, axis=-1)
+    # mask =  np.all(img[:, :, :1] >= lo, axis=-1)
 
     ### END STUDENT CODE
 
@@ -89,12 +90,10 @@ def grayscale(img: np.ndarray) -> np.ndarray:
         Returns a grayscale image of the input. Use utils.rgb2gray().
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    out = np.copy(img)
 
-    out = np.zeros(img.shape)
+    out = utils.rgb2gray(out)
 
     ### END STUDENT CODE
 
@@ -106,12 +105,9 @@ def cut_and_reshape(img_gray: np.ndarray) -> np.ndarray:
         Cuts the image in half (x-dim) and stacks it together in y-dim.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    out = np.zeros(img_gray.shape)
+    temp = np.hsplit(img_gray, [int(img_gray.shape[0] / 2)])
+    out = np.vstack((temp[1], temp[0]))
 
     ### END STUDENT CODE
 
@@ -125,12 +121,31 @@ def filter_image(img: np.ndarray) -> np.ndarray:
     gaussian = utils.gauss_filter(5, 2)
 
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    imgWithPadding = np.pad(img, ((2, 2), (2, 2), (0, 0)))
 
-    out = np.zeros(img.shape)
+    newImg = []
+    for row in range(len(imgWithPadding) - 4):
+        newRow = []
+        for pixel in range(len(imgWithPadding[row]) - 4):
+            newPixel = []
+            for color in range(len(imgWithPadding[row][pixel])):
+                newMatrix = []
+                for i in range(len(gaussian)):
+                    newMatrixLine = []
+                    for j in range(len(gaussian[0])):
+                        newMatrixLine.append(imgWithPadding[row + i][pixel + j][color])
+                    newMatrix.append(newMatrixLine)
+                hardamanProdukt = datastructures.matrix_Xc_matrix(np.array(newMatrix), gaussian)
+                sum = 0
+                for i in range(len(hardamanProdukt)):
+                    for j in range(len(hardamanProdukt[0])):
+                        sum += hardamanProdukt[i][j]
+                newPixel.append(sum)
+            newRow.append(newPixel)
+        newImg.append(newRow)
+
+    out = np.array(newImg)
 
     ### END STUDENT CODE
 

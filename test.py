@@ -79,3 +79,9 @@ plt.imshow(image_marked_green)
 
 image_masked = images.image_masked(image_float, image_marked_green)
 plt.imshow(image_masked)
+
+image_reshaped = images.cut_and_reshape(image_float)
+plt.imshow(image_reshaped)
+
+filtered_image = images.filter_image(image_float)
+print(filtered_image.shape)
