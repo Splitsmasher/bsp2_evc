@@ -1,9 +1,8 @@
 import numpy as np
+from PIL.Image import Image
 from matplotlib import pyplot as plt
 
-import datastructures
 import images
-import triangles
 
 """
 #TESTS Für Datastruktures:
@@ -66,22 +65,11 @@ print(alpha, beta, gamma)
 """
 
 image = images.read_img('images/mandrill_color.jpg')
-plt.imshow(image)
 
 image_float = images.convert(image)
-plt.imshow(image_float)
 
 image_swapped = images.switch_channels(image_float)
-plt.imshow(image_swapped)
 
-image_marked_green = images.image_mark_green(image_float)
-plt.imshow(image_marked_green)
+image_grayscale = images.grayscale(image_float)
 
-image_masked = images.image_masked(image_float, image_marked_green)
-plt.imshow(image_masked)
-
-image_reshaped = images.cut_and_reshape(image_float)
-plt.imshow(image_reshaped)
-
-filtered_image = images.filter_image(image_float)
-print(filtered_image.shape)
+#plt.imsave('images/mandrill_blackandwhite.jpg', image_grayscale, cmap='Greys')

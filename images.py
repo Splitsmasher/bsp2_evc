@@ -1,8 +1,7 @@
-import cv2
 import numpy as np
 import scipy.ndimage
 from PIL import Image
-from pygments.formatters import img
+from scipy.ndimage import correlate
 
 import datastructures
 import utils
@@ -57,13 +56,12 @@ def image_mark_green(img: np.ndarray) -> np.ndarray:
         returns a numpy-array (HxW) with 1 where the green channel of the input image is greater or equal than 0.7, otherwise zero.
     """
     ### STUDENT CODE
+
     lo = 0.7
 
     green = img[:, :, 1]
 
     mask = np.where(green >= lo, 1, 0)
-
-    # mask =  np.all(img[:, :, :1] >= lo, axis=-1)
 
     ### END STUDENT CODE
 
@@ -157,12 +155,10 @@ def horizontal_edges(img: np.ndarray) -> np.ndarray:
         Defines a sobel kernel to extract horizontal edges and convolves the image with it.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-    # NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    gHorizontal = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
 
-    out = np.zeros(img.shape)
+    out = scipy.ndimage.correlate(img, gHorizontal,  mode='constant', cval=0.0)
 
     ### END STUDENT CODE
 
