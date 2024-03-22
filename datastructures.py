@@ -49,7 +49,7 @@ def matrix(M: np.ndarray) -> np.ndarray:
 
     if len(M) != 3:
         raise Exception("Matrix has the wrong height")
-    if len(M[0]) != len(M[1] or len(M[0]) != len(M[2]) and len(M[0]) != 3):
+    if len(M[0]) != len(M[1]) or len(M[0]) != len(M[2]) and len(M[0]) != 3:
         raise Exception("Matrix has the wrong width")
 
     zeros = np.zeros((3, 3))

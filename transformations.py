@@ -3,6 +3,9 @@ from typing import List
 import numpy as np
 import matplotlib.pyplot as plt
 
+import datastructures
+
+
 def define_transformations() -> List[np.ndarray]:
     """
         Returns the four transformations t1, .., t4 to transform the quadrat. 
@@ -14,7 +17,16 @@ def define_transformations() -> List[np.ndarray]:
 	# NOTE: The following lines can be removed. They prevent the framework
     #       from crashing.
 
-    t1, t2, t3, t4 = np.zeros((3,3)), np.zeros((3,3)), np.zeros((3,3)), np.zeros((3,3)),
+    t1 = datastructures.matrix_X_matrix(mtranslate(-3, 0), mrotate(55))
+
+    t2 = datastructures.matrix_X_matrix(mrotate(55), mtranslate(-3, 0))
+
+    t3 = mscale(3,2)
+    t3 = datastructures.matrix_X_matrix(mrotate(70), t3)
+    t3 = datastructures.matrix_X_matrix(mtranslate(3, 1), t3)
+
+    t4 = mrotate(45)
+    t4 = datastructures.matrix_X_matrix(mscale(1, 3), t4)
 
     ### END STUDENT CODE
 
@@ -25,12 +37,8 @@ def mscale(sx : float, sy : float) -> np.ndarray:
         Defines a scale matrix. The scales are determined by sx in x and sy in y dimension.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    m = np.zeros((3,3))
+    m = np.array([[sx, 0., 0.], [0., sy, 0.], [0., 0., 1.]])
 
     ### END STUDENT CODE
 
@@ -41,12 +49,11 @@ def mrotate(angle : float) -> np.ndarray:
         Defines a rotation matrix (z-axis) determined by the angle in degree (!).
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
+    rad = np.deg2rad(angle)
 
-    m = np.zeros((3,3))
+    m = np.array([[np.cos(rad), (np.sin(rad) * -1), 0.], [np.sin(rad), np.cos(rad), 0.], [0., 0., 1.]])
+
 
     ### END STUDENT CODE
 
@@ -57,12 +64,8 @@ def mtranslate(tx : float, ty : float) -> np.ndarray:
         Defines a translation matrix. tx in x, ty in y direction.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    m = np.zeros((3,3))
+    m = np.array([[1., 0., tx], [0., 1., ty], [0., 0., 1.]])
 
     ### END STUDENT CODE
 
@@ -73,12 +76,8 @@ def transform_vertices(v : np.ndarray, m : np.ndarray) -> np.ndarray:
         transform the (3xN) vertices given by v with the (3x3) transformation matrix determined by m.
     """
     ### STUDENT CODE
-    # TODO: Implement this function.
 
-	# NOTE: The following lines can be removed. They prevent the framework
-    #       from crashing.
-
-    out = np.zeros((m.shape[0],v.shape[1]))
+    out = datastructures.matrix_X_matrix(m, v)
 
     ### END STUDENT CODE
 
